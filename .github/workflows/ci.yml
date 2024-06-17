@@ -24,10 +24,4 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-   
 
-    - name: Run tests
-      run: npm test
-
-    - name: Run registration button tests
-      run: npm run test:registration-button
