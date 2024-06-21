@@ -1,0 +1,18 @@
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App{
+    font-family:sans-serif;
+    text-align: center;
+    background-color: blueviolet;
+
+}
+.otpInput{
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    text-align: center;
+    font: size 1.2em;
+}
