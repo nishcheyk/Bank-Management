@@ -29,6 +29,7 @@ function Pdfval() {
   };
 
   return (
+    <form>
     <div className="pdf">
       <header className="pdf-header">
         <h1>Open PDF Files</h1>
@@ -78,6 +79,7 @@ function Pdfval() {
       </header>
       <ToastContainer />
     </div>
+    </form>
   );
 }
 

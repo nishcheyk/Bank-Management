@@ -1,29 +1,85 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const Customer = require("./models/Data");
-const loginRoutes = require("./Routes/loginRoute");
-const signupRoutes = require("./Routes/Signup");
-const app = express();
+const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
-const User = require("./models/User");
+const User = require("./models/User"); // Assuming you have this model
+const Customer = require("./models/Data"); // Assuming you have this model
 const PORT = 5050;
 
-app.use(express.json());
+const app = express();
+app.use(bodyParser.json());
 app.use(cors());
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-  })
-);
 
-mongoose.connect("mongodb://localhost:27017/Bank-Management", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose.connect("mongodb://localhost:27017/Bank-Management");
+
+// Signup Route
+// Signup Route
+app.post("/api/signup", async (req, res) => {
+  try {
+    const { username, password, email, mobileNumber } = req.body;
+
+    // Check if the username, email, or mobile number already exists
+    const existingUser = await User.findOne({
+      $or: [{ username }, { email }, { mobileNumber }],
+    });
+    if (existingUser) {
+      let message = "Username";
+      if (existingUser.email === email) message += " and email";
+      if (existingUser.mobileNumber === mobileNumber)
+        message += " and mobile number";
+      message += " already exists";
+      return res.status(400).json({ message });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user
+    const newUser = new User({
+      username,
+      password: hashedPassword,
+      email,
+      mobileNumber,
+    });
+    const savedUser = await newUser.save();
+
+    res
+      .status(201)
+      .json({ message: "User registered successfully", user: savedUser });
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).json({ message: "Error creating user" });
+  }
+});
+
+//login
+app.post("/api/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    // Check if the user exists
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Validate the password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    console.log(isPasswordValid);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    res.status(200).json({ message: "Login successful", user });
+  } catch (error) {
+    console.error("Error logging in:", error);
+    res.status(500).json({ message: "Error logging in" });
+  }
 });
 
 // Customer API Route
-app.post("/api/Customer", async (req, res) => {
+app.post("/api/customer", async (req, res) => {
   try {
     const { name, email, address, contactNumber, dateOfBirth } = req.body;
 
@@ -43,37 +99,6 @@ app.post("/api/Customer", async (req, res) => {
     res.status(500).json({ message: "Error creating customer" });
   }
 });
-
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    // Find the user by email
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(401).json({ message: "Invalid email or password" });
-    }
-
-    // Compare passwords
-    bcrypt.compare(password, user.password, (err, isMatch) => {
-      if (err || !isMatch) {
-        return res.status(401).json({ message: "Invalid email or password" });
-      }
-
-      // Password matches, return success message
-      res.status(200).json({ message: "Login successful" });
-    });
-  } catch (error) {
-    console.error("Error logging in:", error);
-    res.status(500).json({ message: "Server error" });
-  }
-});
-
-// Use registration routes from registrationRoutes.js under /auth/register
-app.use("/auth/register", signupRoutes);
-// Use login routes from loginRoutes.js under /auth/login
-app.use("/auth/login", loginRoutes);
 
 // Start the Express server
 app.listen(PORT, () => {

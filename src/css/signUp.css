@@ -1,0 +1,104 @@
+/* signUp.css */
+
+.container {
+    max-width: 600px; /* Increased max-width for wider form */
+    margin: 0 auto;
+    padding: 40px; /* Increased padding for better spacing */
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Rounded corners for a softer look */
+    background-color: #f9f9f9;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Increased box shadow for depth */
+  }
+
+  .container h2 {
+    font-size: 28px; /* Larger font size for headings */
+    font-weight: bold;
+    margin-bottom: 20px; /* Increased margin bottom for spacing */
+    color: #333; /* Darkened font color for better readability */
+  }
+
+  .container p {
+    font-size: 16px; /* Slightly larger font size for paragraphs */
+    color: #666;
+    margin-bottom: 30px; /* Increased margin bottom for spacing */
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    font-size: 18px; /* Increased font size for labels */
+    margin-bottom: 10px; /* Increased margin bottom for spacing */
+    color: #333; /* Darkened font color for better contrast */
+  }
+
+  input[type='text'],
+  input[type='password'],
+  input[type='email'] {
+    padding: 12px; /* Increased padding for input fields */
+    margin-bottom: 15px; /* Increased margin bottom for spacing */
+    border: 1px solid #ddd; /* Lightened border color */
+    border-radius: 5px; /* Rounded corners for input fields */
+    font-size: 18px; /* Increased font size for input fields */
+  }
+
+  input[type='text']:focus,
+  input[type='password']:focus,
+  input[type='email']:focus {
+    outline: none;
+    border-color: #4CAF50; /* Highlight color on focus */
+  }
+
+  ul {
+    list-style-type: none;
+    margin-top: 0;
+    padding-left: 25px; /* Adjusted padding left for list items */
+    color: #888;
+    font-size: 16px; /* Increased font size for list items */
+  }
+
+  ul li {
+    margin-bottom: 8px; /* Increased margin bottom for spacing */
+  }
+
+  ul li.valid {
+    color: #4CAF50;
+  }
+
+  #passwordRequirements {
+    margin-bottom: 20px; /* Increased margin bottom for spacing */
+  }
+
+  #passwordMismatch,
+  #emailInvalid,
+  #mobileNumberInvalid {
+    color: red;
+    font-size: 16px; /* Increased font size for error messages */
+    margin-top: 8px; /* Increased margin top for spacing */
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; /* Increased font size for buttons */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  button:hover {
+    background-color: #45a049; /* Darkened hover background color */
+  }
+
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  button:disabled:hover {
+    background-color: #ccc;
+  }
