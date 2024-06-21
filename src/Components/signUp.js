@@ -86,134 +86,163 @@ const Signup = ({ onRegister }) => {
         <>
           <h2>Create your login details</h2>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-                validateUsername(e.target.value);
-              }}
-              required
-              placeholder="Enter your username"
-            />
-            <ul id="usernameRequirements">
-              <li
-                className={
-                  username.length >= 8 && username.length <= 20 ? "valid" : ""
-                }
-              >
-                Must be 8-20 characters long.
-              </li>
-              <li className={/^[A-Za-z0-9]+$/.test(username) ? "valid" : ""}>
-                Must not contain any special characters or spaces.
-              </li>
-            </ul>
+            <div className="input-group">
+              <label className="label-text" htmlFor="username">
+                Username
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  validateUsername(e.target.value);
+                }}
+                required
+                placeholder="Enter your username"
+              />
+              <ul id="usernameRequirements">
+                <li
+                  className={
+                    username.length >= 8 && username.length <= 20 ? "valid" : ""
+                  }
+                >
+                  Must be 8-20 characters long.
+                </li>
+                <li className={/^[A-Za-z0-9]+$/.test(username) ? "valid" : ""}>
+                  Must not contain any special characters or spaces.
+                </li>
+              </ul>
+            </div>
 
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                validatePassword(e.target.value);
-              }}
-              required
-              placeholder="Enter your password"
-            />
-            <ul id="passwordRequirements">
-              <li
-                className={
-                  password.length >= 8 && password.length <= 20 ? "valid" : ""
-                }
-              >
-                Must be 8-20 characters long.
-              </li>
-              <li
-                className={
-                  /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)
-                    ? "valid"
-                    : ""
-                }
-              >
-                Contain at least 1 number or special character.
-              </li>
-              <li className={/[A-Z]/.test(password) ? "valid" : ""}>
-                Contain at least 1 UPPER case letter.
-              </li>
-              <li
-                className={
-                  !/(.)\1{2,}|012|123|234|345|456|567|678|789/.test(password)
-                    ? "valid"
-                    : ""
-                }
-              >
-                Not contain sequences or repeated characters.
-              </li>
-            </ul>
+            <div className="input-group">
+              <label className="label-text" htmlFor="password">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  validatePassword(e.target.value);
+                }}
+                required
+                placeholder="Enter your password"
+              />
+              <ul id="passwordRequirements">
+                <li
+                  className={
+                    password.length >= 8 && password.length <= 20 ? "valid" : ""
+                  }
+                >
+                  Must be 8-20 characters long.
+                </li>
+                <li
+                  className={
+                    /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)
+                      ? "valid"
+                      : ""
+                  }
+                >
+                  Contain at least 1 number or special character.
+                </li>
+                <li className={/[A-Z]/.test(password) ? "valid" : ""}>
+                  Contain at least 1 UPPER case letter.
+                </li>
+                <li
+                  className={
+                    !/(.)\1{2,}|012|123|234|345|456|567|678|789/.test(password)
+                      ? "valid"
+                      : ""
+                  }
+                >
+                  Not contain sequences or repeated characters.
+                </li>
+              </ul>
+            </div>
 
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              placeholder="Confirm your password"
-            />
-            {!isConfirmPasswordValid && (
-              <p id="passwordMismatch">
-                Passwords don't match. Please try again.
-              </p>
-            )}
+            <div className="input-group">
+              <label className="label-text" htmlFor="confirmPassword">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                placeholder="Confirm your password"
+              />
+              {!isConfirmPasswordValid && (
+                <p id="passwordMismatch">Passwords do not match.</p>
+              )}
+            </div>
 
-            <label htmlFor="email">Email*</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                validateEmail(e.target.value);
-              }}
-              required
-              placeholder="Enter your email"
-            />
-            {!isEmailValid && email && (
-              <p id="emailInvalid">Please enter a valid email address.</p>
-            )}
+            <div className="input-group">
+              <label className="label-text" htmlFor="email">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  validateEmail(e.target.value);
+                }}
+                required
+                placeholder="Enter your email"
+              />
+              {!isEmailValid && email.length > 0 && (
+                <p id="emailInvalid">Invalid email address.</p>
+              )}
+            </div>
 
-            <label htmlFor="mobileNumber">Mobile Number*</label>
-            <input
-              type="text"
-              id="mobileNumber"
-              name="mobileNumber"
-              value={mobileNumber}
-              onChange={(e) => {
-                setMobileNumber(e.target.value);
-                validateMobileNumber(e.target.value);
-              }}
-              required
-              placeholder="Enter your mobile number"
-            />
-            {!isMobileNumberValid && mobileNumber && (
-              <p id="mobileNumberInvalid">
-                Please enter a valid 10-digit mobile number.
-              </p>
-            )}
+            <div className="input-group">
+              <label className="label-text" htmlFor="mobileNumber">
+                Mobile Number
+              </label>
+              <input
+                type="text"
+                id="mobileNumber"
+                name="mobileNumber"
+                value={mobileNumber}
+                onChange={(e) => {
+                  setMobileNumber(e.target.value);
+                  validateMobileNumber(e.target.value);
+                }}
+                required
+                placeholder="Enter your mobile number"
+              />
+              {!isMobileNumberValid && mobileNumber.length > 0 && (
+                <p id="mobileNumberInvalid">Invalid mobile number.</p>
+              )}
+            </div>
 
-            <button type="submit">Submit</button>
+            <button
+              type="submit"
+              disabled={
+                !isUsernameValid ||
+                !isPasswordValid ||
+                !isConfirmPasswordValid ||
+                !isEmailValid ||
+                !isMobileNumberValid
+              }
+            >
+              Register
+            </button>
           </form>
           {message && <p>{message}</p>}
         </>
       ) : (
-        <p className="success-message">{message}</p>
+        <>
+          <p className="success-message">{message}</p>
+        </>
       )}
     </div>
   );

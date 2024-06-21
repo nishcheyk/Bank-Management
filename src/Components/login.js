@@ -42,38 +42,47 @@ const Login = ({ onLogin, onForgotPassword }) => {
     <div className="container">
       <h2>Login to your account</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username*</label>
-        <input
-          id="username"
-          type="text"
-          autoComplete="username"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-            validateUsername(e.target.value);
-          }}
-          required
-          placeholder="Enter your username"
-        />
-
-        <label htmlFor="password">Password*</label>
-        <input
-          id="password"
-          type="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            validatePassword(e.target.value);
-          }}
-          required
-          placeholder="Enter your password"
-        />
-
-        <div className="button-group">
-          <button type="submit">Login</button>
-          <button type="button" onClick={handleForgotPassword}>Forgot Password</button>
+        <div className="input-group">
+          <label htmlFor="username" className="label-text">
+            Username
+          </label>
+          <input
+            id="username"
+            type="text"
+            autoComplete="username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+              validateUsername(e.target.value);
+            }}
+            required
+            placeholder="Enter your Username"
+          />
         </div>
+
+        <div className="input-group">
+          <label htmlFor="password" className="label-text">
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              validatePassword(e.target.value);
+            }}
+            required
+            placeholder="Enter your Password"
+          />
+        </div>
+
+        <span className="forgot-password" onClick={handleForgotPassword}>
+          Forgot Password?
+        </span>
+
+        <button type="submit">Login</button>
 
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </form>
