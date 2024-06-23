@@ -25,7 +25,7 @@ const Signup = ({ onRegister }) => {
   const validatePassword = (password) => {
     const passwordLengthValid = password.length >= 8 && password.length <= 20;
     const passwordNumberOrSpecialValid =
-      /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
+      /[0-9!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(password);
     const passwordUppercaseValid = /[A-Z]/.test(password);
     const passwordNoSeqValid =
       !/(.)\1{2,}|012|123|234|345|456|567|678|789/.test(password);
@@ -61,7 +61,7 @@ const Signup = ({ onRegister }) => {
       isMobileNumberValid
     ) {
       try {
-        const response = await axios.post("http://localhost:5050/api/signup", {
+        await axios.post("http://localhost:5050/api/signup", {
           username,
           password,
           email,
@@ -142,7 +142,7 @@ const Signup = ({ onRegister }) => {
                 </li>
                 <li
                   className={
-                    /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)
+                    /[0-9!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(password)
                       ? "valid"
                       : ""
                   }

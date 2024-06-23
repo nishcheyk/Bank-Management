@@ -77,7 +77,6 @@ const Login = ({ onLogin, onForgotPassword }) => {
             placeholder="Enter your Password"
           />
         </div>
-
         <span className="forgot-password" onClick={handleForgotPassword}>
           Forgot Password?
         </span>
