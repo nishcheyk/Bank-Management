@@ -27,7 +27,8 @@ jobs:
     - name: Run test
       run: npm test -- --passWithNoTests
 
+    - name: Debug current directory
+      run: ls -la
+
     - name: Build application
       run: npm run build
-
-
