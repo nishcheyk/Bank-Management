@@ -1,83 +1,54 @@
-import React, { useState } from "react";
-import "./App.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import { IconButton } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
+import React, { useState } from 'react';
+import './App.css';
+import Signup from './Components/signUp';
+import Login from './Components/Login';
+import PdfValidation from './Components/pdfValidation'; // Ensure correct import path and casing
 
 function App() {
-  const [openedPDFs, setOpenedPDFs] = useState(new Set());
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [forgotPasswordUsername, setForgotPasswordUsername] = useState('');
 
-  const handleButtonClick = (pdfFileName) => {
-    const FilePath = `${window.location.origin}/PDF/${pdfFileName}`;
-    window.open(FilePath, "_blank");
-    setOpenedPDFs((prevOpenedPDFs) => {
-      const newOpenedPDFs = new Set(prevOpenedPDFs);
-      newOpenedPDFs.add(pdfFileName);
-      return newOpenedPDFs;
-    });
+  const handleRegister = () => {
+    setIsRegistered(true);
   };
 
-  const allPDFsOpened = openedPDFs.size >= 4;
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
-  const handleRegisterButtonClick = () => {
-    if (!allPDFsOpened) {
-      toast.error("Please open all 4 PDFs before registering!");
-    } else {
-      // Implement your registration logic here
-    }
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  const handleSuccessfulLogin = () => {
+    setIsLoggedIn(true);
+    setIsRegistered(false); // Ensure the signup form is hidden after login
+  };
+
+  const handleForgotPassword = (username) => {
+    setForgotPasswordUsername(username); // Store the username for forgot password flow
+    // Implement your logic for forgot password here, e.g., sending reset instructions
+    alert(`Forgot Password functionality for ${username} will be implemented.`);
   };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Open PDF Files</h1>
-        <div className="button-container">
-          <div className="button-item">
-            <IconButton onClick={() => handleButtonClick("A.pdf")}>
-              <span>Open A.pdf</span>
-              {openedPDFs.has("A.pdf") && (
-                <CheckIcon style={{ color: "green" }} />
-              )}
-            </IconButton>
-          </div>
-          <div className="button-item">
-            <IconButton onClick={() => handleButtonClick("B.pdf")}>
-              <span>Open B.pdf</span>
-              {openedPDFs.has("B.pdf") && (
-                <CheckIcon style={{ color: "green" }} />
-              )}
-            </IconButton>
-          </div>
-          <div className="button-item">
-            <IconButton onClick={() => handleButtonClick("C.pdf")}>
-              <span>Open C.pdf</span>
-              {openedPDFs.has("C.pdf") && (
-                <CheckIcon style={{ color: "green" }} />
-              )}
-            </IconButton>
-          </div>
-          <div className="button-item">
-            <IconButton onClick={() => handleButtonClick("D.pdf")}>
-              <span>Open D.pdf</span>
-              {openedPDFs.has("D.pdf") && (
-                <CheckIcon style={{ color: "green" }} />
-              )}
-            </IconButton>
-          </div>
-        </div>
+      <nav>
+        {!isLoggedIn && (
+          <>
+            <button onClick={handleRegister}>Signup</button>
+            <button onClick={() => setIsRegistered(false)}>Login</button>
+          </>
+        )}
+        {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
+      </nav>
 
-        <button
-          disabled={!allPDFsOpened}
-          onClick={handleRegisterButtonClick}
-          variant="contained"
-          color="primary"
-        >
-          Register
-        </button>
-      </header>
-      <ToastContainer />
+      {!isLoggedIn && !isRegistered && (
+        <Login onLogin={handleSuccessfulLogin} onForgotPassword={handleForgotPassword} />
+      )}
+      {!isLoggedIn && isRegistered && <Signup onRegister={handleRegister} />}
+      {isLoggedIn && <PdfValidation />}
     </div>
   );
 }
