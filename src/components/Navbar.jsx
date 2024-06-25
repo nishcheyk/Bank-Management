@@ -55,7 +55,7 @@ function Navbar() {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <a className="dropdown-item" href="">
+                  <a className="dropdown-item" href="/">
                     Something else here
                   </a>
                 </li>

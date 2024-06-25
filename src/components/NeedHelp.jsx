@@ -12,7 +12,7 @@ function NeedHelp() {
             <p class="card-text">
               Reach out to us. We are committed to your security and help
             </p>
-            <a href="" class="btn btn-primary">
+            <a href="/" class="btn btn-primary">
               Contact Us
             </a>
           </div>
