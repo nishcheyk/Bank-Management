@@ -5,7 +5,7 @@ function Navbar() {
 
     let navigate = useNavigate();
     const handleClick = () => {
-      navigate('/login'); // Redirect to the About page
+      navigate('/login'); 
     }
 
   return (
