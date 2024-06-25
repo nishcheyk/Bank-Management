@@ -5,17 +5,17 @@ function Navbar() {
 
     let navigate = useNavigate();
     const handleClick = () => {
-      navigate('/login'); 
+      navigate('/login');
     }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
       <div className="container-fluid">
-        
+
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item mx-5">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
+              <a className="nav-link active" aria-current="page" href="">Home</a>
             </li>
             <li className="nav-item mx-5">
               <a className="nav-link" href="/login" onClick={handleClick}>Login</a>
