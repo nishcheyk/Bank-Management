@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 /* Tailwind CSS */
 @tailwind base;
+=======
+/* @tailwind base;
+>>>>>>> abhinav
 @tailwind components;
 @tailwind utilities;
 
@@ -97,4 +101,8 @@ button:focus {
   font-size: 14px;
   margin-top: 5px;
   font-family: 'Roboto', sans-serif;
+<<<<<<< HEAD
 }
+=======
+} */
+>>>>>>> abhinav

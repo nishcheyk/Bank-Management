@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 .container {
+=======
+/* .container {
+>>>>>>> abhinav
   max-width: 600px;
   margin: 0 auto;
   padding: 40px;
@@ -106,4 +110,8 @@ button:disabled {
 
 button:disabled:hover {
   background-color: #ccc;
+<<<<<<< HEAD
 }
+=======
+} */
+>>>>>>> abhinav
