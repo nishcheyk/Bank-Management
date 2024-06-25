@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import moment from "moment";
+import React from "react";
+
 import DatePicker from "./DatePicker";
 
 function Form() {
@@ -28,7 +28,7 @@ function Form() {
                 required
               />
             </div>
-            <DatePicker/>
+            <DatePicker />
           </form>
         </div>
       </div>
