@@ -16,7 +16,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item mx-5">
-              <a className="nav-link active" aria-current="page" href="">
+              <a className="nav-link active" aria-current="page" href="/">
                 Home
               </a>
             </li>
@@ -26,14 +26,14 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item mx-5">
-              <a href="" className="nav-link">
+              <a href="/" className="nav-link">
                 Sign-Up
               </a>
             </li>
             <li className="nav-item dropdown mx-5">
               <a
                 className="nav-link dropdown-toggle"
-                href=""
+                href="/"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -42,12 +42,12 @@ function Navbar() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="">
+                  <a className="dropdown-item" href="/">
                     Action
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="">
+                  <a className="dropdown-item" href="/">
                     Another action
                   </a>
                 </li>
